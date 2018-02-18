@@ -1,0 +1,105 @@
+---
+layout: null
+---
+
+{% for episode in site.episodes %}
+  {% capture episode_cover_image %}
+    {{ site.episodes_assets_path }}/{{ episode.number }}/{{ site.cover_filename }}
+  {% endcapture %}
+
+  {% capture episode_cover_medium_image %}
+    {{ site.episodes_assets_path }}/{{ episode.number }}/{{ site.cover_medium_filename }}
+  {% endcapture %}
+
+  {% capture episode_cover_small_image %}
+    {{ site.episodes_assets_path }}/{{ episode.number }}/{{ site.cover_small_filename }}
+  {% endcapture %}
+
+  {% assign episode_cover_image = episode_cover_image | strip %}
+  {% assign episode_cover_medium_image = episode_cover_medium_image | strip %}
+  {% assign episode_cover_small_image = episode_cover_small_image | strip %}
+
+  {% assign has_episode_cover_image = false %}
+  {% assign has_episode_cover_medium_image = false %}
+  {% assign has_episode_cover_small_image = false %}
+
+  {% assign cover_image_files = site.static_files | where: "image", true %}
+  {% for cover_image_file in cover_image_files %}
+    {% if cover_image_file.path == episode_cover_image %}
+      {% assign has_episode_cover_image = true %}
+    {% endif %}
+
+    {% if cover_image_file.path == episode_cover_medium_image %}
+      {% assign has_episode_cover_medium_image = true %}
+    {% endif %}
+
+    {% if cover_image_file.path == episode_cover_small_image %}
+      {% assign has_episode_cover_small_image = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if has_episode_cover_image and has_episode_cover_medium_image and has_episode_cover_small_image %}
+    /** Small only, up to 639px */
+    @media screen and (max-width: 39.9375em) {
+      .episode .episode-cover-{{ episode.number }} .episode-cover-image {
+        background-image: url("{{ episode_cover_small_image }}");
+      }
+    }
+
+    /** Medium and large, up to 1279px */
+    @media screen and (min-width: 40em) and (max-width: 79.938em) { 
+      .episode .episode-cover-{{ episode.number }} .episode-cover-image {
+        background-image: url("{{ episode_cover_medium_image }}");
+      }
+    }
+
+    /** Extra large up, starting at 1280px */
+    @media screen and (min-width: 80em) {
+      .episode .episode-cover-{{ episode.number }} .episode-cover-image {
+        background-image: url("{{ episode_cover_image }}");
+      }
+    }
+
+    {% if episode.image.position %}
+      .episode .episode-{{ episode.number }} .episode-cover-image {
+        background-position: {{ episode.image.position }};
+      }
+    {% endif %}
+
+    .previous-episode-{{ episode.number }} .previous-episode-cover {
+      background:
+        linear-gradient(
+          rgba(173, 0, 91, 0.90),
+          rgba(173, 0, 91, 0.90)
+        ),
+
+        url("{{ episode_cover_small_image }}")
+      ;
+
+      background-size: cover;
+      background-position: center center;
+    }
+
+    {% if forloop.last %}
+      /** Small only */
+      @media screen and (max-width: 39.9375em) {
+        .home .featured-episode-image {
+          background-image: url("{{ episode_cover_small_image }}");
+        }
+      }
+
+      /** Medium up */
+      @media screen and (min-width: 40em) {
+        .home .featured-episode-image {
+          background-image: url("{{ episode_cover_image }}");
+        }
+      }
+
+      {% if episode.image.position %}
+      .home .featured-episode-image {
+        background-position: {{ episode.image.position }};
+      }
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}

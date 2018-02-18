@@ -1,0 +1,64 @@
+{% if include.person_class %}
+  {% assign person_class = include.person_class %}
+{% else %}
+  {% assign person_class = "author" %}
+{% endif %}
+
+{% if include.asset_prefix %}
+  {% assign asset_prefix = include.asset_prefix %}
+{% else %}
+  {% assign asset_prefix = site.defaults_assets_path %}
+{% endif %}
+
+{% for person in include.persons %}
+{% assign person_modulo = forloop.index | modulo: 2 %}
+
+{% if person_modulo == 0 %}
+  {% assign person_offset = "large-offset-1" %}
+{% else %}
+  {% assign person_offset = "" %}
+{% endif %}
+
+{% capture profile_picture %}
+  {{ asset_prefix }}/{{ person_class }}-{{ person.name | slugify: "latin" | downcase }}.jpg
+{% endcapture %}
+
+{% assign profile_picture = profile_picture | strip %}
+
+{% assign picture_files = site.static_files | where: "image", true %}
+{% assign has_picture = false %}
+{% for picture_file in picture_files %}
+  {% if picture_file.path == profile_picture %}
+    {% assign has_picture = true %}
+  {% endif %}
+{% endfor %}
+
+<div class="cell medium-6 large-5 {{ person_offset }} about-{{ person_class }}s">
+  <h3 class="visually-hidden">{{ person.name }}</h3>
+
+  <div class="clearfix about-{{ person_class }}">
+    <div class="float-left about-{{ person_class }}-picture">
+      {% if has_picture %}
+      <img
+        class="float-left profile-picture"
+        src="{{ profile_picture }}"
+        alt=""
+      />
+      {% endif %}
+
+      <p class="text-center about-{{ person_class }}-social">
+        {% for network in person.social_media %}
+          <a
+            href="{{ network[1] }}"
+            title="{{ network[0] }} {{ site.data.layout.social_network_from }} {{ person.name }}"
+            class="social-network icon-{{ network[0] | downcase }}"></a>
+        {% endfor %}
+      </p>
+    </div>
+
+    <p class="about-{{ person_class }}-bio">
+      {{ person.biography }}
+    </p>
+  </div>
+</div>
+{% endfor %}

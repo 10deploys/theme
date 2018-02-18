@@ -1,0 +1,9 @@
+.episodes {
+  & .previous-episodes {
+    padding-top: rem-calc(75);
+  }
+
+  .pagination {
+    margin-top: rem-calc(30);
+  }
+}

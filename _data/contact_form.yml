@@ -1,0 +1,19 @@
+# To enable the contact form, create a form at https://formcarry.com/ and then set the value of this setting to the
+# form's endpoint.
+email_sender: ~
+
+title: Contact
+instructions: All the fields are mandatory.
+
+name_label: Nome
+email_label: Email
+message_label: Message
+submit_label: Send
+cage_label: Unused field
+
+# validation_messages:
+#   nameError: "The name can't be empty"
+#   emailError: "The email address is invalid"
+#   messageError: "The message can't be empty"
+#   successSubmission: "We received your submission, thanks!"
+#   failedSubmission: "An error occurred during the submission. Please, try again later."

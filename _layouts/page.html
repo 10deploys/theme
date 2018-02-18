@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+{% capture page_picture_file %}
+  {{ site.pages_assets_path }}/{{ page.title | slugify: "latin" | downcase }}/{{ site.cover_filename }}
+{% endcapture %}
+
+{% assign page_picture_file = page_picture_file | strip %}
+
+{% assign picture_files = site.static_files | where: "image", true %}
+{% assign has_picture = false %}
+{% for picture_file in picture_files %}
+  {% if picture_file.path == page_picture_file %}
+    {% assign has_picture = true %}
+  {% endif %}
+{% endfor %}
+
+<section>
+  <div class="grid-container fluid page-content">
+    <div class="grid-container no-padding content">
+      <div class="grid-x grid-margin-x">
+        {% if page.image.show and has_picture %}
+        <div class="cell large-order-1 page-content-cover">
+          <img src="{{ page_picture_file }}" alt="{{ page.image.description }}" />
+          {% if page.image.description %}
+            <p class="text-center">{{ page.image.description }}</p>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="cell {% if page.toc %}large-8 large-order-3{% endif %}">
+          <h2 class="page-content-title">
+            {{ page.title }}
+          </h2>
+
+          <span class="page-content-date">
+            {{ page.date | date: site.data.layout.recording_date_format }}
+          </span>
+
+          {{ content }}
+        </div>
+
+        {% if page.toc %}
+        <div class="cell large-4 large-order-2 show-for-large">
+          <h3>{{ site.data.layout.page_index }}</h3>
+
+          <ul>
+            {% for entry in page.toc %}
+            <li>
+              <a href="#{{ entry.anchor }}">{{ entry.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

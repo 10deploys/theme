@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+  {% include head.html %}
+
+  <body class="{{ page.layout }}">
+    {% include nav.html %}
+
+    <main>
+      {{ content }}
+    </main>
+
+    <section id="{{ site.data.layout.about_section_id }}" class="grid-container content about">
+      {% include about.html %}
+    </section>
+
+    <section class="grid-container fluid footer">
+      {% include footer.html %}
+    </section>
+
+    {% if site.data.contact_form.validation_messages or site.data.layout.episode_skip_query_param %}
+    <script>
+      var contactFormMessagesTexts = {};
+
+      {% for item in site.data.contact_form.validation_messages %}
+      contactFormMessagesTexts["{{ item[0] }}"] = "{{ item[1] }}";
+      {% endfor %}
+
+      var episodeSkipQueryParamName = "{{ site.data.layout.episode_skip_query_param }}";
+    </script>
+    {% endif %}
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/form.js"></script>
+
+    {% if page.layout == "episode" and page.recording.soundcloud_id %}
+      <script src="https://w.soundcloud.com/player/api.js"></script>
+      <script src="/assets/js/episode.js"></script>
+    {% endif %}
+  </body>
+</html>

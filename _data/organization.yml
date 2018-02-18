@@ -1,0 +1,50 @@
+name: 10deploys
+tagline_call: This is the theme of the
+tagline: |
+  10deploys<br />
+  podcast.<br />
+  Welcome and<br />
+  enjoy.
+
+summary_1: |
+  The podcast is available in Brazilian Portuguese. Visit the <a href="https://10deploys.com">official website</a>
+  for more information.
+
+summary_2: ~
+
+social_media:
+  Twitter: https://twitter.com/10deploys
+  Website: https://10deploys.com
+
+about_title: About
+about_summary: |
+  The podcast is available in Brazilian Portuguese. Visit the <a href="https://10deploys.com">official website</a>
+  for more information.
+
+authors:
+  - name: Paul McCartney
+    biography: |
+      <strong>Paul McCartney</strong> is an English singer-songwriter, multi-instrumentalist, and composer. He
+      gained worldwide fame as the bass guitarist and singer for the rock band the Beatles, widely considered
+      the most popular and influential group in the history of pop music.
+    social_media:
+      Facebook: https://www.facebook.com/PaulMcCartney
+      Twitter: https://twitter.com/PaulMcCartney
+      YouTube: https://www.youtube.com/user/PAULMCCARTNEY
+      Website: https://www.paulmccartney.com
+  - name: George Harrison
+    biography: |
+      <strong>George Harrison</strong> is an English guitarist, singer-songwriter, and producer who achieved international
+      fame as the lead guitarist of the Beatles. Often referred to as "the quiet Beatle", Harrison wrote Something, which
+      became the Beatles' second-most covered song.
+    social_media:
+      Facebook: https://www.facebook.com/georgeharrison
+      Twitter: https://twitter.com/georgeharrison
+      YouTube: https://www.youtube.com/user/GeorgeHarrisonVideo
+      Website: http://www.georgeharrison.com
+
+license: |
+  The podcast is available in Brazilian Portuguese. Visit the <a href="https://10deploys.com">official website</a>
+  for more information.
+
+location: São Paulo, Brasil

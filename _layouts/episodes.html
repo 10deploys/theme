@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<section class="grid-container fluid previous-episodes">
+  <div class="grid-container content no-padding previous-episodes-list">
+    <h2>{{ page.title }}</h2>
+
+    {% if paginator.total_pages > 1 %}
+    <p>{{ site.data.layout.episodes_page }} {{ paginator.page }} {{ site.data.layout.episodes_page_of }} {{ paginator.total_pages }}</p>
+    {% endif %}
+
+    <div class="grid-x grid-margin-x">
+      {% if paginator.posts.size == 0 %}
+      <div class="cell callout secondary">
+        <p>{{ site.data.layout.no_published_episodes }}</p>
+      </div>
+      {% endif %}
+
+      {% for episode in paginator.posts %}
+        {% include episodes/episode.html %}
+      {% endfor %}
+    </div>
+
+    {% if paginator.total_pages > 1 %}
+    <nav aria-label="Pagination">
+      <h2 class="visually-hidden">{{ site.data.layout.episodes_pagination }}</h2>
+
+      <ul class="pagination text-center">
+      {% unless paginator.previous_page_path %}
+        <li class="pagination-previous disabled">
+          {{ site.data.layout.episodes_pagination_previous }}
+        </li>
+      {% else %}
+        <li class="pagination-previous">
+          <a
+            href="{{ paginator.previous_page_path | relative_url | replace: "index.html", "" }}"
+            aria-label="{{ site.data.layout.episodes_pagination_previous_label }}"
+          >{{ site.data.layout.episodes_pagination_previous }}</a>
+        </li>
+      {% endunless %}
+
+      {% for trail in paginator.page_trail %}
+        {% if page.url == trail.path %}
+          <li class="current"><span class="visually-hidden">You're on page</span> {{ trail.num }}</li>
+        {% else %}
+          <li><a href="{{ trail.path | relative_url | replace: "/index.html", "" }}" aria-label="Page {{ page_number }}">{{ trail.num }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% unless paginator.next_page_path %}
+        <li class="pagination-next disabled">
+          {{ site.data.layout.episodes_pagination_next }}
+        </li>
+      {% else %}
+        <li class="pagination-next">
+          <a
+            href="{{ paginator.next_page_path | relative_url | replace: "index.html", "" }}"
+            aria-label="{{ site.data.layout.episodes_pagination_next_label }}"
+          >{{ site.data.layout.episodes_pagination_next }}</a>
+        </li>
+      {% endunless %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</section>

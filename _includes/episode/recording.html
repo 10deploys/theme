@@ -1,0 +1,29 @@
+{% if page.recording.recorded %}
+  {% if page.recording.soundcloud_id %}
+  <div class="cell {% if page.toc %}medium-6{% else %}medium-12{% endif %} medium-order-2 soundcloud">
+    {% include episode/soundcloud.html soundcloud_id=page.recording.soundcloud_id %}
+  </div>
+  {% endif %}
+
+  {% if page.recording.soundcloud_id and page.toc %}
+  <div class="cell medium-6 medium-order-1">
+    <p>{{ site.data.layout.episode_recording_index_description }}</p>
+
+    <ul>
+      {% for entry in page.toc %}
+      <li>
+        <a
+          href="?{{ site.data.layout.episode_skip_query_param }}={{ forloop.index }}"
+          class="episode-skip"
+          data-index="{{ forloop.index }}"
+          data-instant="{{ entry.instant }}"
+          data-seek="0">
+          {{ entry.title }}</a>
+
+        ({{ entry.instant }})
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endif %}

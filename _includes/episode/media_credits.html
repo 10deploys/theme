@@ -1,0 +1,39 @@
+{% if page.media_credits %}
+<div class="grid-x grid-margin-x">
+  <div class="cell">
+    <h2>{{ site.data.layout.episode_media_credits_title }}</h2>
+
+    <ul>
+      {% for entry in page.media_credits %}
+      <li>
+        {% if entry.type == "picture" %}{{ site.data.layout.episode_media_credits_picture_prefix }}{% endif %}
+        {% if entry.type == "music" %}{{ site.data.layout.episode_media_credits_audio_prefix }}{% endif %}
+
+        <a href="{{ entry.page }}">{{ entry.name }}</a> {{ site.data.layout.episode_media_credits_by }}
+        <a href="{{ entry.author_page }}">{{ entry.author }}</a>{% if entry.license %}, {% endif %}
+
+        {% if entry.license %}
+          {% for license in site.data.licenses %}
+            {% if license.type == entry.license %}
+              {% if license.url %}
+                <a href="{{ license.url }}">{{ license.description }}</a>
+              {% else %}
+                {{ license.description }}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if entry.type %}
+          <span class="icon icon-{{ entry.type }}"></span>
+        {% endif %}
+
+        {% if entry.description %}
+          <p>{{ entry.description }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}

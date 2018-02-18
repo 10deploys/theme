@@ -1,0 +1,22 @@
+<div class="cell medium-6 large-4 previous-episode previous-episode-{{ episode.number }}">
+  <a href="{{ episode.url }}">
+    <div class="cell large-4 previous-episode-cover">
+      <h3 class="text-center previous-episode-title">
+        <span>
+          {{ episode.title }}
+        </span>
+      </h3>
+
+      <div class="previous-episode-description">
+        <p>
+          {{ episode.recording.summary }}
+        </p>
+      </div>
+    </div>
+  </a>
+
+  <p class="text-center label previous-episode-call">
+    {{ site.data.layout.episode_number_title }} {{ episode.number }} &ndash;
+    {{ episode.recording.date | date: site.data.layout.recording_date_format }}
+  </p>
+</div>

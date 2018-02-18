@@ -1,0 +1,15 @@
+{% if page.guests %}
+<div class="grid-x grid-margin-x">
+  <div class="cell">
+    <h2>
+      {% if page.guests.size == 1 %}
+        {{ site.data.layout.episode_guests_singular_title }}
+      {% else %}
+        {{ site.data.layout.episode_guests_plural_title }}
+      {% endif %}
+    </h2>
+  </div>
+
+  {% include person.html persons=page.guests person_class="guest" asset_prefix=asset_prefix %}
+</div>
+{% endif %}

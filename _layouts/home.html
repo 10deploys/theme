@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<section>
+  <div class="grid-container content presentation">
+    <p class="label presentation-tagline">
+      {{ site.data.organization.tagline_call }}
+    </p>
+
+    <h2 class="presentation-title">
+      {{ site.data.organization.tagline }}
+    </h2>
+  </div>
+
+  <div class="grid-container content presentation-summary">
+    <div class="grid-x grid-margin-x">
+      <div class="cell medium-5">
+        <p>
+          {{ site.data.organization.summary_1 }}
+        </p>
+      </div>
+
+      <div class="cell medium-5 medium-offset-1">
+        <p>
+          {{ site.data.organization.summary_2 }}
+        </p>
+
+        {% if site.data.organization.social_media %}
+        <p>
+          {% for network in site.data.organization.social_media %}
+            {% if network[1] %}
+              <a
+                href="{{ network[1] }}"
+                title="{{ site.data.organization.name }} {{ site.data.layout.social_network_at }} {{ network[0] }}"
+                class="social-network icon-{{ network[0] | downcase }}"></a>
+            {% endif %}
+          {% endfor %}
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include episode/cover.html episode=site.episodes.last cover_class="featured-episode" %}
+
+{% assign latest_episodes = site.episodes | reverse %}
+<section class="grid-container fluid previous-episodes">
+  <div class="grid-container content no-padding previous-episodes-list">
+    {% if latest_episodes.size > 1 %}
+    <h2>{{ site.data.layout.previous_episodes_title }}</h2>
+    {% endif %}
+
+    <div class="grid-x grid-margin-x">
+      {% if latest_episodes == null or latest_episodes.size <= 1 %}
+        <div class="cell callout secondary">
+          <p>{{ site.data.layout.no_published_episodes }}</p>
+        </div>
+      {% else %}
+        {% for episode in latest_episodes offset: 1 limit: 12 %}
+          {% include episodes/episode.html %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>

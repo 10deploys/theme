@@ -1,0 +1,39 @@
+.episode {
+  &-cover {
+    @include episode-cover();
+  }
+
+  &-description {
+    @extend %main-content;
+
+    h2 {
+      margin-top: rem-calc(20);
+      font-size: font-size("h3");
+
+      @media #{$xlarge-down} {
+        margin-top: rem-calc(10);
+        font-size: font-size("h3", "small");
+      }
+    }
+  }
+
+  &-agenda {
+    .icon {
+      margin-right: rem-calc(5);
+    }
+  }
+}
+
+body.episode .episode-cover {
+  margin-top: rem-calc(60);
+}
+
+.soundcloud {
+  margin-bottom: rem-calc(20);
+}
+
+#soundcloud {
+  width: 100%;
+  height: rem-calc(160);
+  border: 0;
+}

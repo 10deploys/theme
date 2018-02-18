@@ -1,0 +1,54 @@
+<div class="brand">
+  <span class="brand-logo"></span>
+</div>
+
+<header class="grid-container fluid {% if page.layout == "home" %}hide-menu{% endif %} navigation">
+  <nav>
+    <div class="brand">
+      <a href="/" class="brand-logo">
+        <h1 class="brand-text visually-hidden">
+          {{ site.data.organization.name }} ({{ site.data.layout.menu_home_label }})
+        </h1>
+      </a>
+    </div>
+
+    {% if site.data.layout.menu_items %}
+    <div class="grid-container content no-padding">
+      <a
+        href="#navigation-menu"
+        class="float-right navigation-toggle"
+        aria-expanded="false"
+        aria-controls="navigation-menu"
+      >
+        <span class="icon icon-menu"></span>
+        <span class="visually-hidden">{{ site.data.layout.menu_label }}</span>
+      </a>
+
+      <div id="navigation-menu" class="navigation-menu">
+        <a href="/" class="navigation-brand">
+          <span class="visually-hidden">{{ site.data.layout.menu_home_label }}</span>
+        </a>
+
+        <a class="navigation-closure">
+          <span class="icon icon-cancel"></span>
+          <span class="visually-hidden">{{ site.data.layout.menu_close_label }}</span>
+        </a>
+
+        <ul>
+        {% for item in site.data.layout.menu_items %}
+          {% assign is_active = false %}
+          {% for layout_active in item.layouts_active %}
+            {% if page.layout == layout_active %}
+              {% assign is_active = true %}
+            {% endif %}
+          {% endfor %}
+          <li{% if is_active %} class="current"{% endif %}>
+            <a href="{{ item.path }}">{{ item.label }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </nav>
+</header>

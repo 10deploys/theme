@@ -1,0 +1,181 @@
+.content {
+  /** The logo takes 240 of whitespace in the left. */
+  margin-left: rem-calc(240);
+
+  @media #{$xlarge-down} {
+    margin-left: rem-calc(210);
+  }
+
+  @media #{$medium-down} {
+    margin-left: rem-calc(0);
+  }
+}
+
+.about,
+.footer {
+  padding-top: rem-calc(50);
+  padding-bottom: rem-calc(50);
+
+  @media #{$xlarge-down} {
+    padding-top: rem-calc(30);
+    padding-bottom: rem-calc(30);
+  }
+}
+
+.about {
+  &-authors {
+    margin-top: rem-calc(20);
+  }
+
+  &-author,
+  &-guest {
+    &-picture {
+      width: $profile-picture-width;
+
+      @media #{$xlarge-down} {
+        width: $profile-picture-width-small;
+      }
+    }
+
+    &-social {
+      width: $profile-picture-width - rem-calc(5);
+
+      @media #{$xlarge-down} {
+        width: $profile-picture-width-small - rem-calc(5);
+      }
+    }
+
+    &-bio {
+      padding-left: $profile-picture-width + rem-calc(20);
+
+      @media #{$xlarge-down} {
+        padding-left: $profile-picture-width-small + rem-calc(20);
+      }
+    }
+  }
+
+  &-author {
+    &-bio {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.footer {
+  background-color: $section-background-color;
+}
+
+.license {
+  padding-top: rem-calc(40);
+  background: url("#{$brand-logo-large}") top left no-repeat;
+
+  @media #{$xlarge-down} {
+    padding-top: rem-calc(30);
+    background: url("#{$brand-logo-medium}") top left no-repeat;
+  }
+
+  @media #{$small-only} {
+    margin-top: rem-calc(40);
+  }
+
+  &-disclaimer {
+    margin-top: rem-calc(25);
+  }
+}
+
+@mixin episode-cover() {
+  $height: rem-calc(850);
+  $height-medium: rem-calc(600);
+  $height-small: rem-calc(300);
+
+  position: relative;
+  z-index: 1000;
+  height: $height;
+  background-color: $section-featured-episode-color;
+
+  &-image {
+    height: $height;
+    background-image: url("#{$episode-cover}");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media #{$xlarge-down} {
+    &,
+    &-image {
+      height: $height-medium;
+    }
+  }
+
+  @media #{$medium-down} {
+    &,
+    &-image {
+      height: $height-small;
+    }
+  }
+
+  &-description {
+    position: relative;
+
+    &-box {
+      &-link {
+        color: $font-color !important;
+        text-decoration: none !important;
+      }
+
+      position: absolute;
+      z-index: 100;
+      margin-top: rem-calc(20);
+      padding: rem-calc(20);
+      background: $section-featured-episode-box-color;
+
+      @media #{$medium-up} {
+        bottom: rem-calc(-100);
+      }
+
+      @media #{$medium-down} {
+        bottom: rem-calc(-150);
+      }
+
+      &-title {
+        font-weight: 700;
+        font-size: font-size("episode-cover-description-box-title");
+
+        @media #{$xlarge-down} {
+          font-size: font-size("episode-cover-description-box-title", "small");
+        }
+      }
+
+      &-schedule {
+        margin-bottom: 0;
+        font-size: font-size("episode-cover-description-box-schedule");
+
+        @media #{$xlarge-down} {
+          font-size: font-size("episode-cover-description-box-schedule", "small");
+        }
+      }
+    }
+  }
+}
+
+%main-content {
+  padding-top: rem-calc(150);
+  padding-bottom: rem-calc(50);
+  background-color: $section-background-color;
+
+  @media #{$xlarge-down} {
+    padding-top: rem-calc(130);
+    padding-bottom: rem-calc(30);
+  }
+
+  @media #{$medium-down} {
+    padding-top: rem-calc(180);
+  }
+}
+
+%simple-main-content {
+  padding-top: rem-calc(75);
+  padding-bottom: rem-calc(50);
+  background-color: $section-background-color;
+}

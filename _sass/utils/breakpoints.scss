@@ -1,0 +1,20 @@
+/**
+ * Copied from foundation.scss file, media queries for the medium-x and large-x classes.
+ *
+ * See: https://foundation.zurb.com/sites/docs/v/5.5.3/media-queries.html
+ */
+
+$small-only: "screen and (max-width: 39.9375em)" !default;                        //    0px -  639px
+$medium-only: "screen and (min-width: 40em) and (max-width: 63.9375em)" !default; //  640px - 1023px
+$large-only: "screen and (min-width: 64em) and (max-width: 79.938em)" !default;   // 1024px - 1279px
+$xlarge-only: "screen and (min-width: 80em) and (max-width: 99.938em)" !default;  // 1280px - 1599px
+$xxlarge-only: "screen and (min-width: 100em)" !default;                          // 1600px
+
+$medium-up: "screen and (min-width: 40em)" !default;
+$large-up: "screen and (min-width: 64em)" !default;
+$xlarge-up: "screen and (min-width: 80em)" !default;
+$xxlarge-up: "screen and (min-width: 100em)" !default;
+
+$medium-down: "screen and (max-width: 63.9375em)" !default;
+$large-down: "screen and (max-width: 79.938em)" !default;
+$xlarge-down: "screen and (max-width: 99.938em)" !default;

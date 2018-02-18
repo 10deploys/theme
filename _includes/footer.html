@@ -1,0 +1,117 @@
+<div class="grid-container content no-padding">
+  <div class="grid-x grid-margin-x">
+    {% if site.data.contact_form.email_sender %}
+    <div class="cell medium-6 medium-offset-1 medium-order-2 contact-form">
+      <form
+        action="{{ site.data.contact_form.email_sender }}"
+        id="{{ site.data.layout.contact_form_section_id }}"
+        name="contact-form"
+        method="POST"
+      >
+        <div class="grid-x grid-margin-x">
+          <div class="cell">
+            <h2>
+              {{ site.data.contact_form.title }}
+            </h2>
+
+            <p>
+              {{ site.data.contact_form.instructions }}
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x hide">
+          <div class="cell">
+            <label for="contact-form-cage">
+              {{ site.data.contact_form.cage_label }}
+
+              <input
+                id="contact-form-cage"
+                name="cage"
+                type="text"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell">
+            <label for="contact-form-name">
+              {{ site.data.contact_form.name_label }}
+
+              <input
+                id="contact-form-name"
+                name="name"
+                type="text"
+                placeholder="{{ site.data.contact_form.name_label }}"
+                autocomplete="name"
+                required
+                aria-required="true"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell">
+            <label for="contact-form-email">
+              {{ site.data.contact_form.email_label }}
+
+              <input
+                id="contact-form-email"
+                name="email"
+                type="email"
+                placeholder="{{ site.data.contact_form.email_label }}"
+                autocomplete="email"
+                required
+                aria-required="true"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell">
+            <label for="contact-form-message">
+              {{ site.data.contact_form.message_label }}
+
+              <textarea
+                id="contact-form-message"
+                name="message"
+                placeholder="{{ site.data.contact_form.message_label }}"
+                required
+                aria-required="true"></textarea>
+            </label>
+
+            <input
+              name="submit"
+              type="submit"
+              class="button contact-form-submit"
+              value="{{ site.data.contact_form.submit_label }}"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    {% endif %}
+
+    <div class="cell medium-5 medium-order-1 license">
+      <p class="license-disclaimer">
+        {{ site.data.organization.license }}
+      </p>
+
+      {% if site.data.organization.social_media %}
+      <p>
+        {% for network in site.data.organization.social_media %}
+          {% if network[1] %}
+            <a
+              href="{{ network[1] }}"
+              title="{{ site.data.organization.name }} {{ site.data.layout.social_network_at }} {{ network[0] }}"
+              class="social-network icon-{{ network[0] | downcase }}"></a>
+          {% endif %}
+        {% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</div>

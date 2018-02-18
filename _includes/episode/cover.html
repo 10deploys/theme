@@ -1,0 +1,94 @@
+{% if include.episode %}
+  {% assign episode = include.episode %}
+{% else %}
+  {% assign episode = null %}
+{% endif %}
+
+{% if include.show_episode_number %}
+  {% assign show_episode_number = include.show_episode_number %}
+  {% assign block_element = "div" %}
+  {% assign heading_level = "h1" %}
+{% else %}
+  {% assign show_episode_number = false %}
+  {% assign block_element = "section" %}
+  {% assign heading_level = "h3" %}
+{% endif %}
+
+{% assign cover_class = include.cover_class %}
+
+
+{% capture episode_cover_image %}
+  {{ site.episodes_assets_path }}/{{ episode.number }}/{{ site.cover_filename }}
+{% endcapture %}
+
+{% assign episode_cover_image = episode_cover_image | strip %}
+
+{% assign has_episode_cover_image = false %}
+
+{% assign cover_image_files = site.static_files | where: "image", true %}
+{% for cover_image_file in cover_image_files %}
+  {% if cover_image_file.path == episode_cover_image %}
+    {% assign has_episode_cover_image = true %}
+  {% endif %}
+{% endfor %}
+
+
+<{{ block_element }} class="grid-container fluid no-padding {{ cover_class }} {{ cover_class }}-{{ episode.number }}">
+  {% unless episode %}
+    <div class="{{ cover_class }}-image" role="img" aria-label="{{ site.data.layout.featured_image_description }}"></div>
+  {% else %}
+    {% if has_episode_cover_image %}
+      <div class="{{ cover_class }}-image"{% if episode.image.description %} role="img" aria-label="{{ episode.image.description }}"{% endif %}></div>
+    {% else %}
+      <div class="{{ cover_class }}-image" role="img" aria-label="{{ site.data.layout.featured_image_description }}"></div>
+    {% endif %}
+
+    <div class="grid-container content">
+      <div class="grid-x {{ cover_class }}-description">
+        <div class="cell small-12 large-8 {{ cover_class }}-description-box">
+          {% unless show_episode_number %}
+          <a href="{{ episode.url }}" class="{{ cover_class }}-description-box-link">
+          {% endunless %}
+
+            {% if show_episode_number %}
+              <span class="label episode-cover-description-box-call">
+                {{ site.data.layout.episode_number_title }} {{ page.number }}
+              </span>
+            {% else %}
+              <h2 class="label {{ cover_class }}-description-box-call">
+                {% if episode.recording.recorded %}
+                  {{ site.data.layout.episode }}
+                {% else %}
+                  {{ site.data.layout.next_episode }}
+                {% endif %}
+              </h2>
+            {% endif %}
+
+            <{{ heading_level }} class="{{ cover_class }}-description-box-title">
+              {{ episode.title }}
+            </{{ heading_level }}>
+
+            <p>
+              {{ episode.recording.summary }}
+            </p>
+
+            {% unless episode.recording.recorded %}
+            <p class="{{ cover_class }}-description-box-schedule">
+              {{ episode.recording.date | date: site.data.layout.recording_date_format }},
+              {{ site.data.layout.recording_date_time_starts }}
+              {{ episode.recording.date | date: site.data.layout.recording_time_format }}
+            </p>
+            {% else %}
+            <p class="{{ cover_class }}-description-box-schedule">
+              {{ site.data.layout.recorded_in }} {{ episode.recording.date | date: site.data.layout.recording_date_format }}
+            </p>
+            {% endunless %}
+
+          {% unless show_episode_number %}
+          </a>
+          {% endunless %}
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+</{{ block_element }}>

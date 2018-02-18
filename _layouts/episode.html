@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+{% capture asset_prefix %}
+  {{ site.episodes_assets_path }}/{{ page.number }}
+{% endcapture %}
+
+{% assign asset_prefix = asset_prefix | strip %}
+
+<section>
+  {% include episode/cover.html episode=page show_episode_number=true cover_class="episode-cover" %}
+
+  <div class="grid-container fluid episode-description">
+    <div class="grid-container no-padding content">
+
+      {% if content or page.recording.soundcloud_id or page.toc %}
+      <div class="grid-x grid-margin-x">
+        {% include episode/recording.html %}
+
+        {% if content.size > 1 %}
+        <div class="cell {% if page.recording.recorded %}medium-12{% else %}medium-8{% endif %} medium-order-3">
+          {% if page.recording.recorded %}
+            <h2>{{ site.data.layout.episode_summary_title }}</h2>
+          {% endif %}
+
+          {{ content }}
+        </div>
+        {% endif %}
+
+        {% include episode/agenda.html %}
+      </div>
+      {% endif %}
+
+      {% include episode/guests.html %}
+
+      {% include episode/references.html references=page.references title=site.data.layout.episode_references_title %}
+
+      {% include episode/references.html references=page.recommendations title=site.data.layout.episode_recommendations_title %}
+
+      {% include episode/media_credits.html %}
+    </div>
+  </div>
+</section>

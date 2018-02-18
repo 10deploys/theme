@@ -1,0 +1,102 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% if page.layout == "home" %}
+    {% assign og_title = site.title %}
+  {% elsif page.layout == "episode" %}
+    {%
+    assign og_title = site.data.layout.episode_number_title |
+      append: " " |
+      append: page.number |
+      append: ": " |
+      append: page.title |
+      append: " | " |
+      append: site.title
+    %}
+  {% else %}
+    {%
+    assign og_title = page.title |
+      append: " | " |
+      append: site.title
+    %}
+  {% endif %}
+
+  {% if page.layout == "episode" %}
+    {% assign og_description = page.recording.summary %}
+  {% elsif page.description %}
+    {% assign og_description = page.description %}
+  {% else %}
+    {% assign og_description = site.description %}
+  {% endif %}
+
+  {%
+  assign og_description = og_description |
+    newline_to_br |
+    strip_newlines |
+    replace: "<br />", " " |
+    replace: "  ", " " |
+    strip_html
+  %}
+
+  {% capture og_image %}
+    {{ site.defaults_assets_path }}/{{ site.cover_filename }}
+  {% endcapture %}
+
+  {% assign og_default_image = og_image %}
+
+  {% if page.layout == "home" %}
+    {% assign last_episode = site.episodes.last %}
+    {% if last_episode %}
+      {% capture og_image %}
+        {{ site.episodes_assets_path }}/{{ last_episode.number }}/{{ site.cover_filename }}
+      {% endcapture %}
+    {% endif %}
+  {% elsif page.layout == "episode" %}
+    {% capture og_image %}
+      {{ site.episodes_assets_path }}/{{ page.number }}/{{ site.cover_filename }}
+    {% endcapture %}
+  {% elsif page.layout == "page" %}
+    {% capture og_image %}
+      {{ site.pages_assets_path }}/{{ page.title | slugify: "latin" | downcase }}/{{ site.cover_filename }}
+    {% endcapture %}
+  {% endif %}
+
+  {% assign has_cover_image = false %}
+  {% assign og_image = og_image | strip %}
+  {% assign cover_image_files = site.static_files | where: "image", true %}
+  {% for cover_image_file in cover_image_files %}
+    {% if cover_image_file.path == og_image %}
+      {% assign has_cover_image = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% unless has_cover_image %}
+    {% assign og_image = og_default_image %}
+  {% endunless %}
+
+  {% assign og_title = og_title | strip %}
+  {% assign og_url = page.url | absolute_url %}
+  {% assign og_description = og_description | strip %}
+  {% assign og_image = og_image | strip | absolute_url %}
+
+  <title>{{ og_title }}</title>
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="{{ site.twitter_username }}" />
+  <meta name="twitter:creator" content="{{ site.twitter_username }}" />
+
+  <meta property="og:title" content="{{ og_title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ og_url }}" />
+  <meta property="og:description" content="{{ og_description }}" />
+  <meta property="og:image" content="{{ og_image }}" />
+
+  <link href="/assets/favicon/32x32.png" rel="icon" type="image/png" sizes="32x32" />
+  <link href="/assets/favicon/16x16.png" rel="icon" type="image/png" sizes="16x16" />
+
+  <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet" />
+  <link href="/assets/css/main.css" rel="stylesheet" />
+
+  <link href="/assets/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} ATOM feed" />
+</head>

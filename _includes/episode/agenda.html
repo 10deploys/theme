@@ -1,0 +1,54 @@
+{% if page.recording.recorded == false and page.recording.youtube_id %}
+{% assign youtube_link = "https://www.youtube.com/watch?v=" | append: page.recording.youtube_id %}
+<div class="cell medium-4 medium-order-4 episode-agenda">
+  <dl>
+    <dt>{{ site.data.layout.episode_agenda_broadcast_title }}</dt>
+
+    <dd>
+      <span class="icon icon-youtube"></span>
+      <a href="{{ youtube_link }}">
+        {{ site.data.layout.episode_agenda_broadcast_description }}</a>
+    </dd>
+
+    <dt>{{ site.data.layout.episode_agenda_schedule_title }}</dt>
+    <dd>
+      {% capture google_calendar_text %}
+{{ site.data.layout.google_calendar_text_prefix }}, {{ site.data.layout.episode_number_title | downcase }} {{ page.number }}: {{ page.title }}
+      {% endcapture %}
+
+
+      {% capture google_calendar_details %}{{ page.recording.summary | newline_to_br | strip_newlines | replace: "<br />", " " }}
+
+{{ site.data.layout.episode_agenda_google_calendar_more_details_link }} {{ page.url | absolute_url }}
+
+{{ site.data.layout.episode_agenda_google_calendar_broadcast_link }} {{ youtube_link }}
+      {% endcapture %}
+
+
+      {% assign google_calendar_text = google_calendar_text | strip | url_encode %}
+      {% assign google_calendar_date = page.recording.date | date: "%Y%m%dT%H%M%S" %}
+      {% assign google_calendar_details = google_calendar_details | url_encode %}
+      {% assign google_calendar_location = site.data.organization.location | url_encode %}
+      {% assign google_calendar_timezone = site.timezone | url_encode %}
+
+
+      {% capture google_calendar_link %}
+        {{
+          site.data.layout.google_calendar_link_template |
+          replace: "GOOGLE_CALENDAR_TEXT", google_calendar_text |
+          replace: "GOOGLE_CALENDAR_DATES", google_calendar_date |
+          replace: "GOOGLE_CALENDAR_DETAILS", google_calendar_details |
+          replace: "GOOGLE_CALENDAR_LOCATION", google_calendar_location |
+          replace: "GOOGLE_CALENDAR_TIMEZONE", google_calendar_timezone
+        }}
+      {% endcapture %}
+
+      <span class="icon icon-calendar"></span>
+      <a href="{{ google_calendar_link | strip }}" title="{{ site.data.layout.google_calendar_link_label }}">
+        {{ page.recording.date | date: site.data.layout.recording_date_format }},
+        {{ site.data.layout.recording_date_time_starts }}
+        {{ page.recording.date | date: site.data.layout.recording_time_format }}</a>
+    </dd>
+  </dl>
+</div>
+{% endif %}

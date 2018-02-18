@@ -1,0 +1,34 @@
+/**
+ * H5BP Image Replacement 2.
+ *
+ * The clip (which is deprecated) property was replaced with clip-path.
+ *
+ * See: https://css-tricks.com/the-image-replacement-museum/
+ */
+@mixin h5bp() {
+  border: 0;
+  clip-path: none;
+  height: rem-calc(1);
+  margin: rem-calc(-1);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: rem-calc(1);
+}
+
+/**
+ * Negates the H5BP Image Replacement 2 technique.
+ */
+@mixin h5bp-show() {
+  border: 0;
+  clip-path: initial;
+  height: auto;
+  margin: auto;
+  overflow: initial;
+  position: initial;
+  width: auto;
+}
+
+.visually-hidden {
+  @include h5bp();
+}

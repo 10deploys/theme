@@ -1,0 +1,89 @@
+# Home
+featured_image_description: Abstract image by Zhu Hehuai, public domain.
+last_episode: Last episode
+next_episode: Next episode
+previous_episodes_title: Previous episodes
+
+
+# Episode
+episode_summary_title: Summary
+episode_references_title: References
+episode_recommendations_title: Recommendations
+
+episode_recording_index_description: Use the links below to listen the respective part of the episode.
+
+episode_agenda_broadcast_title: Broadcast
+episode_agenda_broadcast_description: Live broadcast on YouTube
+episode_agenda_schedule_title: When
+episode_agenda_google_calendar_more_details_link: "More details in:"
+episode_agenda_google_calendar_broadcast_link: "Live broadcast on YouTube:"
+
+episode_guests_plural_title: Guests
+episode_guests_singular_title: Guest
+
+episode_media_credits_title: Credits of the audiovisual files
+episode_media_credits_picture_prefix: "Image used as cover:"
+episode_media_credits_audio_prefix: "Audio used in the recording:"
+episode_media_credits_by: by
+
+google_calendar_text_prefix: Podcast 10deploys
+google_calendar_link_label: Add event to Google Calendar
+google_calendar_link_template: |
+  https://www.google.com/calendar/render?action=TEMPLATE&text=GOOGLE_CALENDAR_TEXT&dates=GOOGLE_CALENDAR_DATES/GOOGLE_CALENDAR_DATES&details=GOOGLE_CALENDAR_DETAILS&location=GOOGLE_CALENDAR_LOCATION&ctz=GOOGLE_CALENDAR_TIMEZONE&sf=true&output=xml
+
+soundcloud_player_color: AD005B
+
+episode_skip_query_param: "part"
+
+
+# Episodes
+episodes_page: Page
+episodes_page_of: of
+
+episodes_pagination: Pagination
+
+episodes_pagination_previous: |
+  Previous<span class="visually-hidden"> Page</span>
+
+episodes_pagination_next: |
+  Next<span class="visually-hidden"> Page</span>
+
+episodes_pagination_previous_label: Previous page
+episodes_pagination_next_label: Next page
+
+
+# Page
+page_index: Contents
+
+
+# General
+no_published_episodes: There are no published episodes.
+
+recording_date_format: "%Y-%m-%d"
+recording_time_format: "%H:%M"
+recording_date_time_starts: starts at
+
+recorded_in: Recorded in
+
+episode_number_title: Episode
+
+social_network_from: from
+social_network_at: at
+
+about_section_id: about
+contact_form_section_id: contact
+
+menu_label: Menu
+menu_home_label: Home
+menu_close_label: Close
+
+menu_items:
+  - label: Episodes
+    path: /episodes
+    layouts_active:
+      - episodes
+      - episode
+  - label: About
+    path: "#about"
+  #- label: Contact
+  #  path: "#contact"

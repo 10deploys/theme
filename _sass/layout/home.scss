@@ -1,0 +1,103 @@
+.presentation {
+  margin-top: rem-calc(150);
+  margin-bottom: rem-calc(50);
+
+  @media #{$xlarge-down} {
+    margin-top: rem-calc(100);
+    margin-bottom: rem-calc(30);
+  }
+
+  @media #{$medium-down} {
+    margin-top: rem-calc(75);
+  }
+
+  &-title {
+    @extend %main-heading;
+  }
+
+  &-summary {
+    margin-bottom: rem-calc(40);
+
+    p:last-child {
+      @media #{$large-up} {
+        margin-bottom: 0;
+      }
+    }
+
+    @media #{$small-only} {
+      margin-bottom: rem-calc(0);
+    }
+  }
+}
+
+.featured-episode {
+  @include episode-cover();
+}
+
+.previous-episodes {
+  @extend %main-content;
+}
+
+.previous-episode {
+  a {
+    text-decoration: none;
+  }
+
+  &-cover {
+    background:
+      linear-gradient(
+        $overlay-color,
+        $overlay-color
+      ),
+
+      url("#{$episode-cover}")
+    ;
+
+    background-size: cover;
+    background-position: center center;
+    color: $link-previous-episode-color;
+  }
+
+  &-call {
+    margin-top: rem-calc(5);
+    margin-bottom: rem-calc(20);
+  }
+
+  &-cover {
+    display: table;
+    height: rem-calc(250);
+    margin: 0 auto;
+    padding: rem-calc(20);
+
+    @media #{$xlarge-down} {
+      height: rem-calc(220);
+    }
+  }
+
+  &:hover &-title {
+    display: none;
+  }
+
+  &:hover &-description {
+    @include h5bp-show();
+
+    display: table-cell;
+  }
+
+  &-description {
+    @include h5bp();
+
+    vertical-align: middle;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &-title {
+    display: table-cell;
+    vertical-align: middle;
+    line-height: 1.1;
+    text-align: center;
+  }
+}

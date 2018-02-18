@@ -1,0 +1,114 @@
+$color-white: #FFFFFF;
+$color-gray: #CCCCCC;
+$color-dark-gray: #333333;
+$color-light-gray: #F7F7F7;
+$color-lighter-gray: #F9F9FB;
+$color-dark-pink: #AD005B;
+$color-darker-pink: #6D0039;
+
+$font-family: 'Heebo', sans-serif;
+$font-color: $color-dark-gray;
+
+$link-color: $color-dark-pink;
+$link-visited-color: $color-darker-pink;
+
+$overlay-color: rgba(173, 0, 91, 0.90);
+
+$link-social-network-color: $font-color;
+$link-social-network-hover-color: $link-color;
+
+$link-previous-episode-color: $color-white;
+
+$brand-logo-large: "/assets/logo/large.png";
+$brand-logo-medium: "/assets/logo/medium.png";
+$brand-logo-small: "/assets/logo/small.png";
+
+$brand-logo-white-large: "/assets/logo/white-large.png";
+$brand-logo-white-medium: "/assets/logo/white-medium.png";
+$brand-logo-white-small: "/assets/logo/white-small.png";
+
+$section-background-color: $color-lighter-gray;
+$section-featured-episode-color: $color-gray;
+$section-featured-episode-box-color: $color-white;
+
+$episode-cover: "/assets/defaults/cover.jpg";
+$episode-cover-thumbnail: "/assets/defaults/cover-small.jpg";
+
+$profile-picture-width: rem-calc(100);
+$profile-picture-width-small: rem-calc(80);
+
+$font-sizes: (
+  body: (
+    regular: 16,
+    small: 14
+  ),
+  h1: (
+    regular: 66,
+    small: 50
+  ),
+  h2: (
+    regular: 40,
+    small: 30
+  ),
+  h3: (
+    regular: 29,
+    small: 20
+  ),
+  h4: (
+    regular: 24,
+    small: 18
+  ),
+  h5: (
+    regular: 21,
+    small: 16
+  ),
+  h6: (
+    regular: 18,
+    small: 14
+  ),
+  extravagant: (
+    regular: 120,
+    small: 80
+  ),
+  button: (
+    regular: 14.4,
+    small: 12
+  ),
+  input: (
+    regular: 16,
+    small: 12
+  ),
+  label: (
+    regular: 13.5,
+    small: 10
+  ),
+  icon: (
+    regular: 15,
+    small: 12
+  ),
+  social-network: (
+    regular: 19.2,
+    small: 15
+  ),
+  episode-cover-description-box-title: (
+    regular: 29,
+    small: 20
+  ),
+  episode-cover-description-box-schedule: (
+    regular: 13,
+    small: 10
+  )
+);
+
+@function font-size($key, $screen-size: "regular") {
+  @if map-has-key($font-sizes, $key) {
+    $sizes: map-get($font-sizes, $key);
+
+    @if map-has-key($sizes, $screen-size) {
+      @return rem-calc(map-get($sizes, $screen-size));
+    }
+  }
+
+  @warn "Unknown #{$key} and/or #{$screen-size} in $font-sizes";
+  @return null;
+}

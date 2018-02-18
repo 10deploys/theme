@@ -1,0 +1,37 @@
+{% if include.soundcloud_id %}
+{% comment %}
+Parameters: https://w.soundcloud.com/player/api_playground.html
+{% endcomment %}
+
+{%
+assign soundcloud_url =
+  "https://w.soundcloud.com/player/?" |
+  append: "url=https%3A//api.soundcloud.com/tracks/" |
+  append: include.soundcloud_id |
+  append: "&amp;" |
+  append: "color=%23" |
+    append: site.data.layout.soundcloud_player_color |
+  append: "&amp;" | 
+  append: "auto_play=false" |
+  append: "&amp;" |
+  append: "hide_related=true" |
+  append: "&amp;" |
+  append: "show_comments=false" |
+  append: "&amp;" |
+  append: "show_user=true" |
+  append: "&amp;" |
+  append: "show_reposts=false" |
+  append: "&amp;" |
+  append: "show_teaser=true" |
+  append: "&amp;" |
+  append: "show_artwork=false" |
+  append: "&amp;" |
+  append: "sharing=false" |
+  append: "&amp;" |
+  append: "download=false" |
+  append: "&amp;" |
+  append: "show_playcount=false"
+%}
+
+<iframe id="soundcloud" src="{{ soundcloud_url | strip }}"></iframe>
+{% endif %}

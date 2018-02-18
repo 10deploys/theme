@@ -1,0 +1,28 @@
+.page {
+  &-content {
+    @extend %simple-main-content;
+
+    &-cover {
+      margin-bottom: rem-calc(20);
+
+      img {
+        margin-bottom: rem-calc(5);
+        border: rem-calc(10) solid $color-white;
+      }
+    }
+
+    &-title {
+      margin-bottom: 0;
+    }
+
+    &-date {
+      display: inline-block;
+      margin-bottom: rem-calc(20);
+      font-size: rem-calc(14);
+
+      @media #{$xlarge-down} {
+        font-size: rem-calc(11);
+      }
+    }
+  }
+}

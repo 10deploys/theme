@@ -1,0 +1,23 @@
+{% if include.references %}
+<div class="grid-x grid-margin-x">
+  <div class="cell">
+    <h2>{{ include.title }}</h2>
+
+    <ul>
+      {% for reference in include.references %}
+      <li>
+        {% if reference.author %}
+          {{ reference.author }}{% if reference.year %}, {{ reference.year }}{% endif %}.
+        {% endif %}
+
+        <a href="{{ reference.url }}">{{ reference.title }}</a>
+
+        {% if reference.type %}
+          <span class="icon icon-{{ reference.type }}"></span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
