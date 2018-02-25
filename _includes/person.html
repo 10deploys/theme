@@ -57,7 +57,11 @@
     </div>
 
     <p class="about-{{ person_class }}-bio">
-      {{ person.biography | escape_once }}
+      {% if include.escape_biography %}
+        {{ person.biography | escape_once }}
+      {% else %}
+        {{ person.biography }}
+      {% endif %}
     </p>
   </div>
 </div>

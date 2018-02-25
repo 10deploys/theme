@@ -10,6 +10,6 @@
     </h2>
   </div>
 
-  {% include person.html persons=page.guests person_class="guest" asset_prefix=asset_prefix %}
+  {% include person.html persons=page.guests person_class="guest" asset_prefix=asset_prefix escape_biography=True %}
 </div>
 {% endif %}
