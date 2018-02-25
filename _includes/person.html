@@ -34,7 +34,7 @@
 {% endfor %}
 
 <div class="cell medium-6 large-5 {{ person_offset }} about-{{ person_class }}s">
-  <h3 class="visually-hidden">{{ person.name }}</h3>
+  <h3 class="visually-hidden">{{ person.name | escape_once }}</h3>
 
   <div class="clearfix about-{{ person_class }}">
     <div class="float-left about-{{ person_class }}-picture">
@@ -50,14 +50,14 @@
         {% for network in person.social_media %}
           <a
             href="{{ network[1] }}"
-            title="{{ network[0] }} {{ site.data.layout.social_network_from }} {{ person.name }}"
+            title="{{ network[0] }} {{ site.data.layout.social_network_from }} {{ person.name | escape_once }}"
             class="social-network icon-{{ network[0] | downcase }}"></a>
         {% endfor %}
       </p>
     </div>
 
     <p class="about-{{ person_class }}-bio">
-      {{ person.biography }}
+      {{ person.biography | escape_once }}
     </p>
   </div>
 </div>

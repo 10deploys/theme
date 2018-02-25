@@ -18,7 +18,7 @@
           data-index="{{ forloop.index }}"
           data-instant="{{ entry.instant }}"
           data-seek="0">
-          {{ entry.title }}</a>
+          {{ entry.title | escape_once }}</a>
 
         ({{ entry.instant }})
       </li>

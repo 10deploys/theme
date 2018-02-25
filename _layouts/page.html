@@ -22,7 +22,7 @@ layout: default
       <div class="grid-x grid-margin-x">
         {% if page.image.show and has_picture %}
         <div class="cell large-order-1 page-content-cover">
-          <img src="{{ page_picture_file }}" alt="{{ page.image.description }}" />
+          <img src="{{ page_picture_file }}" alt="{{ page.image.description | escape_once }}" />
           {% if page.image.description %}
             <p class="text-center">{{ page.image.description }}</p>
           {% endif %}
@@ -31,7 +31,7 @@ layout: default
 
         <div class="cell {% if page.toc %}large-8 large-order-3{% endif %}">
           <h2 class="page-content-title">
-            {{ page.title }}
+            {{ page.title | escape_once }}
           </h2>
 
           <span class="page-content-date">

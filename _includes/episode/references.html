@@ -7,10 +7,10 @@
       {% for reference in include.references %}
       <li>
         {% if reference.author %}
-          {{ reference.author }}{% if reference.year %}, {{ reference.year }}{% endif %}.
+          {{ reference.author | escape_once }}{% if reference.year %}, {{ reference.year }}{% endif %}.
         {% endif %}
 
-        <a href="{{ reference.url }}">{{ reference.title }}</a>
+        <a href="{{ reference.url }}">{{ reference.title | escape_once }}</a>
 
         {% if reference.type %}
           <span class="icon icon-{{ reference.type }}"></span>

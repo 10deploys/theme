@@ -3,13 +3,13 @@
     <div class="cell large-4 previous-episode-cover">
       <h3 class="text-center previous-episode-title">
         <span>
-          {{ episode.title }}
+          {{ episode.title | escape_once }}
         </span>
       </h3>
 
       <div class="previous-episode-description">
         <p>
-          {{ episode.recording.summary }}
+          {{ episode.recording.summary | escape_once }}
         </p>
       </div>
     </div>

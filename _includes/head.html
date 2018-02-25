@@ -75,9 +75,9 @@
     {% assign og_image = og_default_image %}
   {% endunless %}
 
-  {% assign og_title = og_title | strip %}
+  {% assign og_title = og_title | strip | escape_once %}
   {% assign og_url = page.url | absolute_url %}
-  {% assign og_description = og_description | strip %}
+  {% assign og_description = og_description | strip | escape_once %}
   {% assign og_image = og_image | strip | absolute_url %}
 
   <title>{{ og_title }}</title>
