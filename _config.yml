@@ -5,6 +5,7 @@ language: en
 timezone: America/Sao_Paulo
 description: The theme of the 10deploys website.
 twitter_username: "@10deploys"
+google_analytics_tracking_id: ~
 
 exclude:
   - docker-compose.yml

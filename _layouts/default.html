@@ -42,5 +42,19 @@
       <script src="https://w.soundcloud.com/player/api.js"></script>
       <script src="/assets/js/episode.js"></script>
     {% endif %}
+
+    {% if site.google_analytics_tracking_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tracking_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "{{ site.google_analytics_tracking_id }}");
+    </script>
+    {% endif %}
   </body>
 </html>
