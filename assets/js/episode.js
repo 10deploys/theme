@@ -63,6 +63,9 @@ var bindSkipLinks = function(soundCloud) {
   skipLinks().click(function(event) {
     event.preventDefault();
 
+    skipLinkWithActiveClass().removeClass("active");
+    $(this).addClass("active");
+
     var seek = $(this).attr("data-seek") * 1000;
 
     soundCloud.seekTo(seek);
@@ -101,12 +104,20 @@ var skipQueryParamName = function() {
 };
 
 var skipLinks = function() {
-  return $(".episode-skip");
+  return $(skipLinkClass());
 };
 
 var skipLinkOfIndex = function(index) {
-  return $(".episode-skip[data-index=" + index + "]");
+  return $(skipLinkClass() + "[data-index=" + index + "]");
 };
+
+var skipLinkWithActiveClass = function() {
+  return $(skipLinkClass() + ".active");
+}
+
+var skipLinkClass = function() {
+  return ".episode-toc-list-skip";
+}
 
 var castToInteger = function(time) {
   if (time !== undefined) {

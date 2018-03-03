@@ -17,6 +17,27 @@
     }
   }
 
+  &-toc {
+    &-list {
+      list-style-type: none;
+      margin-left: 0;
+
+      &-skip {
+        transition-property: padding, background-color, color;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in;
+
+        &.active {
+          padding: rem-calc(0 5 0 5);
+          background-color: $link-color;
+          color: $color-white;
+          text-decoration: none;
+          transition-timing-function: ease-out;
+        }
+      }
+    }
+  }
+
   &-soundcloud {
     margin-bottom: rem-calc(20);
   }

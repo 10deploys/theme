@@ -6,24 +6,23 @@
   {% endif %}
 
   {% if page.recording.soundcloud_id and page.toc %}
-  <div class="cell medium-6 medium-order-1">
+  <div class="cell medium-6 medium-order-1 episode-toc">
     <p>{{ site.data.layout.episode_recording_index_description }}</p>
 
-    <ul>
+    <ol class="episode-toc-list">
       {% for entry in page.toc %}
       <li>
+        <span aria-hidden="true">{{ entry.instant }}</span>
         <a
           href="?{{ site.data.layout.episode_skip_query_param }}={{ forloop.index }}"
-          class="episode-skip"
+          class="episode-toc-list-skip"
           data-index="{{ forloop.index }}"
           data-instant="{{ entry.instant }}"
           data-seek="0">
           {{ entry.title | escape_once }}</a>
-
-        ({{ entry.instant }})
       </li>
       {% endfor %}
-    </ul>
+    </ol>
   </div>
   {% endif %}
 {% endif %}
