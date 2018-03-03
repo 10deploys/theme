@@ -17,6 +17,10 @@
     }
   }
 
+  &-soundcloud {
+    margin-bottom: rem-calc(20);
+  }
+
   &-agenda {
     .icon {
       margin-right: rem-calc(5);
@@ -28,12 +32,10 @@ body.episode .episode-cover {
   margin-top: rem-calc(60);
 }
 
-.soundcloud {
-  margin-bottom: rem-calc(20);
-}
-
-#soundcloud {
-  width: 100%;
-  height: rem-calc(160);
-  border: 0;
+#episode {
+  &-soundcloud {
+    width: 100%;
+    height: rem-calc(160);
+    border: 0;
+  }
 }

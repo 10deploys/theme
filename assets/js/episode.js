@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var soundCloud = SC.Widget("soundcloud");
+  var soundCloud = SC.Widget("episode-soundcloud");
 
   calculateSkipTime();
   bindSkipLinks(soundCloud);

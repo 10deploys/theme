@@ -1,6 +1,6 @@
 {% if page.recording.recorded %}
   {% if page.recording.soundcloud_id %}
-  <div class="cell {% if page.toc %}medium-6{% else %}medium-12{% endif %} medium-order-2 soundcloud">
+  <div class="cell {% if page.toc %}medium-6{% else %}medium-12{% endif %} medium-order-2 episode-soundcloud">
     {% include episode/soundcloud.html soundcloud_id=page.recording.soundcloud_id %}
   </div>
   {% endif %}
