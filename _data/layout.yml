@@ -18,8 +18,10 @@ episode_agenda_schedule_title: When
 episode_agenda_google_calendar_more_details_link: "More details in:"
 episode_agenda_google_calendar_broadcast_link: "Live broadcast on YouTube:"
 
-episode_guests_plural_title: Guests
-episode_guests_singular_title: Guest
+episode_guests_female_plural_title: Guests
+episode_guests_female_singular_title: Guest
+episode_guests_male_plural_title: Guests
+episode_guests_male_singular_title: Guest
 
 episode_media_credits_title: Credits of the audiovisual files
 episode_media_credits_picture_prefix: "Image used as cover:"

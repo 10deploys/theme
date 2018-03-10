@@ -3,9 +3,17 @@
   <div class="cell">
     <h2>
       {% if page.guests.size == 1 %}
-        {{ site.data.layout.episode_guests_singular_title }}
+        {% if page.guests_gender_agreement == "female" %}
+          {{ site.data.layout.episode_guests_female_singular_title }}
+        {% else %}
+          {{ site.data.layout.episode_guests_male_singular_title }}
+        {% endif %}
       {% else %}
-        {{ site.data.layout.episode_guests_plural_title }}
+        {% if page.guests_gender_agreement == "female" %}
+          {{ site.data.layout.episode_guests_female_plural_title }}
+        {% else %}
+          {{ site.data.layout.episode_guests_male_plural_title }}
+        {% endif %}
       {% endif %}
     </h2>
   </div>

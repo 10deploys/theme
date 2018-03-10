@@ -77,6 +77,9 @@ guests:
       Instagram: https://www.instagram.com/ringostarrmusic/
       Website: http://www.ringostarr.com/
 
+# The gender agreement for the Guests section title. "male" or "female". Defaults to "male".
+guests_gender_agreement: male
+
 # Types available for references and recommendations:
 #
 # Suited for references:
