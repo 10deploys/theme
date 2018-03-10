@@ -61,7 +61,7 @@ layout: null
     }
 
     {% if episode.image.position %}
-      .episode .episode-{{ episode.number }} .episode-cover-image {
+      .episode .episode-cover-{{ episode.number }} .episode-cover-image {
         background-position: {{ episode.image.position }};
       }
     {% endif %}
