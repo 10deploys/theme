@@ -1,29 +1,88 @@
 $(document).ready(function() {
-  var soundCloud = SC.Widget("episode-soundcloud");
+  var audioPlayer = createPlayer();
   var skipTimes = {};
 
   calculateSkipTime(skipTimes);
-  bindSkipLinks(soundCloud);
+  bindSkipLinks(audioPlayer);
   skipWhenQueryParamIsAvailable();
 
-  // It is not always fired.
-  soundCloud.bind(SC.Widget.Events.READY, function() {
-    skipWhenQueryParamIsAvailable();
-  });
+  function skipWhenAudioPlayProgress(currentPosition) {
+    skipWhenAudioPlayProgressBetweenParts(skipTimes, currentPosition);
+  }
 
-  soundCloud.bind(SC.Widget.Events.PLAY_PROGRESS, function(event) {
-    var currentPosition = Math.round(event.currentPosition / 1000);
-    var skipLink = skipLinkWithSeekTimeGreaterThan(skipTimes, currentPosition);
-
-    if (skipLink !== undefined) {
-      addActiveClassToSkipLink(skipLink);
-    }
-  });
+  audioPlayer.bindEvents(
+    skipWhenQueryParamIsAvailable,
+    skipWhenAudioPlayProgress
+  );
 
   window.onpopstate = function(event) {
     skipWhenQueryParamIsAvailable();
   };
 });
+
+var SoundCloudPlayer = {
+  soundCloud: undefined,
+
+  initialize: function(elementId) {
+    this.soundCloud = SC.Widget(elementId);
+  },
+
+  skip: function(seekTime) {
+    this.soundCloud.seekTo(seekTime * 1000);
+    this.soundCloud.play();
+  },
+
+  bindEvents: function(skipWhenQueryParamIsAvailable, skipWhenAudioPlayProgress) {
+    this.soundCloud.bind(SC.Widget.Events.READY, function() {
+      skipWhenQueryParamIsAvailable();
+    });
+
+    this.soundCloud.bind(SC.Widget.Events.PLAY_PROGRESS, function(event) {
+      var currentPosition = Math.round(event.currentPosition / 1000);
+
+      skipWhenAudioPlayProgress(currentPosition);
+    });
+  }
+};
+
+var HTMLAudioPlayer = {
+  player: undefined,
+
+  initialize: function(elementId) {
+    this.player = document.getElementById(elementId);
+  },
+
+  skip: function(seekTime) {
+    this.player.currentTime = seekTime;
+    this.player.play();
+  },
+
+  bindEvents: function(skipWhenQueryParamIsAvailable, skipWhenAudioPlayProgress) {
+    var thePlayer = this.player;
+
+    this.player.oncanplay = function() {
+      // Implementation ommited.
+    };
+
+    window.setInterval(function() {
+      var currentTime = castToInteger(thePlayer.currentTime);
+
+      skipWhenAudioPlayProgress(currentTime);
+    }, 1000);
+  }
+}
+
+var createPlayer = function() {
+  if ($("#episode-audio").length > 0) {
+    var audioPlayer = Object.create(HTMLAudioPlayer);
+    audioPlayer.initialize("episode-audio");
+  } else {
+    var audioPlayer = Object.create(SoundCloudPlayer);
+    audioPlayer.initialize("episode-soundcloud");
+  }
+
+  return audioPlayer;
+};
 
 var calculateSkipTime = function(skipTimes) {
   skipLinks().each(function() {
@@ -72,16 +131,15 @@ var calculateSkipTime = function(skipTimes) {
   });
 };
 
-var bindSkipLinks = function(soundCloud) {
+var bindSkipLinks = function(skippablePlayer) {
   skipLinks().click(function(event) {
     event.preventDefault();
 
     addActiveClassToSkipLink($(this));
 
-    var seek = $(this).attr("data-seek") * 1000;
+    var seek = $(this).attr("data-seek");
 
-    soundCloud.seekTo(seek);
-    soundCloud.play();
+    skippablePlayer.skip(seek);
 
     var index = $(this).attr("data-index");
     var path = window.location.pathname;
@@ -100,6 +158,14 @@ var addActiveClassToSkipLink = function(skipLink) {
 
 var skipWhenQueryParamIsAvailable = function() {
   skipLinkOfIndex(skipQueryParam()).click();
+};
+
+var skipWhenAudioPlayProgressBetweenParts = function(skipTimes, currentPosition) {
+  var skipLink = skipLinkWithSeekTimeGreaterThan(skipTimes, currentPosition);
+
+  if (skipLink !== undefined) {
+    addActiveClassToSkipLink(skipLink);
+  }
 };
 
 var skipQueryParam = function() {

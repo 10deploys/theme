@@ -11,6 +11,9 @@ episode_references_title: References
 episode_recommendations_title: Recommendations
 
 episode_recording_index_description: Use the links below to listen the respective part of the episode.
+episode_recording_player_audio_unsupported: Your browser does not support the audio element.
+episode_recording_player_audio_unsupported_download_text: Download the audio file.
+episode_recording_youtube_view_text: Check out the recording of the episode on
 
 episode_agenda_broadcast_title: Broadcast
 episode_agenda_broadcast_description: Live broadcast on YouTube

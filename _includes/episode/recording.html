@@ -1,7 +1,24 @@
 {% if page.recording.recorded %}
-  {% if page.recording.soundcloud_id %}
-  <div class="cell {% if page.toc %}medium-6{% else %}medium-12{% endif %} medium-order-2 episode-soundcloud">
-    {% include episode/soundcloud.html soundcloud_id=page.recording.soundcloud_id %}
+  {% if page.recording.audio_file %}
+    {% assign player_class = "episode-audio" %}
+    {% assign player_include = "episode/audio.html" %}
+    {% assign player_parameter = page.recording.audio_file %}
+  {% elsif page.recording.soundcloud_id %}
+    {% assign player_class = "episode-soundcloud" %}
+    {% assign player_include = "episode/soundcloud.html" %}
+    {% assign player_parameter = page.recording.soundcloud_id %}
+  {% endif %}
+
+  {% if page.recording.audio_file or page.recording.soundcloud_id %}
+  <div class="cell {% if page.toc %}medium-6{% else %}medium-12{% endif %} medium-order-2 {{ player_class }}">
+    {% include {{ player_include }} parameter=player_parameter %}
+
+    {% if page.recording.youtube_id %}
+    <p>
+      {{ site.data.layout.episode_recording_youtube_view_text }}
+      <a href="https://www.youtube.com/watch?v={{ page.recording.youtube_id }}">YouTube</a>.
+    </p>
+    {% endif %}
   </div>
   {% endif %}
 

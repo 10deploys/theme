@@ -38,8 +38,19 @@
     }
   }
 
+  &-audio {
+    display: block;
+
+    audio {
+      width: 100%;
+      margin-bottom: rem-calc(10);
+    }
+  }
+
+  &-audio,
   &-soundcloud {
     margin-bottom: rem-calc(20);
+    text-align: center;
   }
 
   &-agenda {

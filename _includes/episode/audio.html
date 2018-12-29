@@ -1,0 +1,11 @@
+{% if include.parameter %}
+<audio
+  id="episode-audio"
+  preload="metadata"
+  controls
+>
+  <source src="{{ include.parameter }}" type="audio/mpeg">
+  {{ site.data.layout.episode_recording_player_audio_unsupported }}
+  <a href="{{ include.parameter }}">{{ site.data.layout.episode_recording_player_audio_unsupported_download_text }}</a>
+</audio>
+{% endif %}
