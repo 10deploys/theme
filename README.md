@@ -64,14 +64,20 @@ The following libraries, code and assets are used in this project:
   [Enigma Magazine](https://www.enigma-mag.com/remembering-george-harrison/), licensed under a
   [Creative Commons license](https://creativecommons.org/licenses/by-sa/4.0/deed.en)
 
-The following fonts are incorporated in this project, all licensed under the
-[SIL license](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web):
+
+### Incorporated fonts
+
+[SIL licensed](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web):
 
 - [Entypo](http://www.entypo.com/)
 - [Font Awesome](http://fortawesome.github.com/Font-Awesome/)
 - [Heebo](https://github.com/OdedEzer/heebo)
 - [Modern Pictograms](http://thedesignoffice.org/project/modern-pictograms/)
 - [Typicons](http://typicons.com/)
+
+[Public domain](https://creativecommons.org/publicdomain/zero/1.0/):
+
+- [Maki](https://www.mapbox.com/maki-icons/)
 
 
 ## Contributing
