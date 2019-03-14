@@ -42,6 +42,7 @@ defaults:
       type: pages
     values:
       layout: page
+      show_date: true
       image: ~
       description: ~
       toc: ~

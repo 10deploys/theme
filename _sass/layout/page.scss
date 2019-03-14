@@ -13,6 +13,10 @@
 
     &-title {
       margin-bottom: 0;
+
+      &.no-date {
+        margin-bottom: rem-calc(20);
+      }
     }
 
     &-date {

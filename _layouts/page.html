@@ -29,12 +29,12 @@ layout: default
         </div>
         {% endif %}
 
-        <div class="cell {% if page.toc %}large-8 large-order-3{% endif %}">
-          <h2 class="page-content-title">
+        <div class="cell {% if page.toc %}large-8 {% endif %}large-order-3">
+          <h2 class="page-content-title {% unless page.show_date %}no-date{% endunless %}">
             {{ page.title | escape_once }}
           </h2>
 
-          <span class="page-content-date">
+          <span class="page-content-date {% unless page.show_date %}hide{% endunless %}">
             {{ page.date | date: site.data.layout.recording_date_format }}
           </span>
 

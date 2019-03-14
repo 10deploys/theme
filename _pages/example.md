@@ -1,6 +1,7 @@
 ---
 title: Example
 date: 2017-01-01 10:00:00
+# show_date: true
 # permalink: /pages/example.html
 
 # Used in Open Graph meta tags.
