@@ -22,7 +22,8 @@
   </div>
   {% endif %}
 
-  {% if page.recording.soundcloud_id and page.toc %}
+  {% if page.recording.audio_file or page.recording.soundcloud_id %}
+  {% if page.toc %}
   <div class="cell medium-6 medium-order-1 episode-toc">
     <p>{{ site.data.layout.episode_recording_index_description }}</p>
 
@@ -41,5 +42,6 @@
       {% endfor %}
     </ol>
   </div>
+  {% endif %}
   {% endif %}
 {% endif %}
