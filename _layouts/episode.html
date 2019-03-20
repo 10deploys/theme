@@ -14,7 +14,7 @@ layout: default
   <div class="grid-container fluid episode-description">
     <div class="grid-container no-padding content">
 
-      {% if content or page.recording.soundcloud_id or page.toc %}
+      {% if content or page.recording.audio_file or page.recording.soundcloud_id or page.toc %}
       <div class="grid-x grid-margin-x">
         {% include episode/recording.html %}
 
